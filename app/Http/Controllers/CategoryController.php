@@ -15,11 +15,49 @@ class CategoryController extends Controller
         return view('categories.index', compact('categories'));
     }
 
-    public function show($id)
+    public function create()
+    {
+        return view('categories.create');
+    }
+
+    public function store(Request $request)
+    {
+        // dd($request->all());
+        Category::create([
+            'name' => $request->name,
+        ]);
+
+        return redirect()->route('categories.index');
+    }
+
+    public function edit($id)
     {
         // dd($id);
         $category = Category::find($id);
+        return view('categories.edit', compact('category'));
+    }
+
+    public function update(Request $request)
+    {
+        // dd($request->all());
+        $category = Category::find($request->id);
+
+        $category->update([
+            'name' => $request->name,
+        ]);
+
+        return redirect()->route('categories.index');
+    }
+
+    public function delete($id)
+    {
+        // dd('here');
+        // dd($id);
+        $category = Category::find($id);
+
+        $category->delete();
+
+        return redirect()->route('categories.index');
         // dd($category);
-        return view('categories.show', compact('category'));
     }
 }
