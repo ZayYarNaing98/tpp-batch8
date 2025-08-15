@@ -4,13 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
+use App\Http\Requests\CategoryUpdateRequest;
 
 class CategoryController extends Controller
 {
     public function index()
     {
         $categories = Category::get();
-        // dd($categories);
 
         return view('categories.index', compact('categories'));
     }
@@ -22,24 +22,23 @@ class CategoryController extends Controller
 
     public function store(Request $request)
     {
-        // dd($request->all());
-        Category::create([
-            'name' => $request->name,
+        $data = $request->validate([
+            'name' => 'required|string'
         ]);
+
+        Category::create($data);
 
         return redirect()->route('categories.index');
     }
 
     public function edit($id)
     {
-        // dd($id);
         $category = Category::find($id);
         return view('categories.edit', compact('category'));
     }
 
-    public function update(Request $request)
+    public function update(CategoryUpdateRequest $request)
     {
-        // dd($request->all());
         $category = Category::find($request->id);
 
         $category->update([
@@ -51,13 +50,10 @@ class CategoryController extends Controller
 
     public function delete($id)
     {
-        // dd('here');
-        // dd($id);
         $category = Category::find($id);
 
         $category->delete();
 
         return redirect()->route('categories.index');
-        // dd($category);
     }
 }
