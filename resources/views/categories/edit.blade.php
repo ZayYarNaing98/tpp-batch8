@@ -9,6 +9,15 @@
 </head>
 <body>
     <div class="container">
+        <div class="text-danger">
+            @if ($errors->any())
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            @endif
+        </div>
         <div class="card mt-4">
             <div class="card-header">
                 Edit Category
