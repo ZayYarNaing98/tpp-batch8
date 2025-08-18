@@ -8,8 +8,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 <body>
-    {{-- {{dd($errors)}} --}}
-
     <div class="container mt-4">
         <div class="text-danger">
             @if ($errors->any())
@@ -24,10 +22,13 @@
             <div class="card-header">
                 + Category Create
             </div>
-            <form action="{{ route('categories.store') }}" method="POST">
+            <form action="{{ route('categories.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="card-body">
                     <input type="text" class="form-control" placeholder="Enter Category Name" name="name"/>
+                </div>
+                <div class="card-body">
+                    <input type="file" class="form-control"  name="image" />
                 </div>
                 <div class="card-footer">
                     <button type="submit" class="btn btn-primary btn-sm">

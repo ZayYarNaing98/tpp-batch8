@@ -17,11 +17,12 @@
         <table class="table table-bordered">
             <thead>
                 <tr>
-                    <th class="bg-primary text-white">ID</th>
-                    <th class="bg-primary text-white">NAME</th>
-                    <th class="bg-primary text-white">DESCRIPTION</th>
-                    <th class="bg-primary text-white">PRICE</th>
-                    <th class="bg-primary text-white">ACTION</th>
+                    <th class="bg-secondary text-white">ID</th>
+                    <th class="bg-secondary text-white">NAME</th>
+                    <th class="bg-secondary text-white">DESCRIPTION</th>
+                    <th class="bg-secondary text-white">PRICE</th>
+                    <th class="bg-secondary text-white">CATEGORY</th>
+                    <th class="bg-secondary text-white">ACTION</th>
                 </tr>
             </thead>
             <tbody>
@@ -31,6 +32,7 @@
                         <th>{{ $data['name'] }}</th>
                         <th>{{ $data['description'] }}</th>
                         <th>{{ $data['price'] }}</th>
+                        <th>{{ $data['category']['name'] }}</th>
                         <th class="d-flex">
                             <a href="{{ route('products.edit', ['id' => $data->id]) }}"
                                 class="btn btn-outline-secondary me-2 btn-sm">Edit</a>
