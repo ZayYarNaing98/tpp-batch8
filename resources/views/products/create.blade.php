@@ -40,6 +40,14 @@
                     <label for="price" class="form-label">Price :</label>
                     <input type="text" name="price" placeholder="Enter Product Price" class="form-control mb-2">
                 </div>
+                <div class="card-body">
+                    <label for="category" class="form-label">Catgory :</label>
+                    <select name="category_id" id="category_id">
+                        @foreach ($categories as $category)
+                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
                 <div class="card-footer">
                     <button type="submit" class="btn btn-primary btn-sm">+Create</button>
                     <a href="{{ route('products.index') }}" class="btn btn-secondary btn-sm">Back</a>
