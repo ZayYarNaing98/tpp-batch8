@@ -40,6 +40,10 @@
                     <input type="text" name="price" class="form-control" value="{{ $product->price }}" />
                 </div>
                 <div class="card-body">
+                    <label for="status" class="form-check-label me-2">Active or Inactive :</label>
+                    <input type="checkbox" class="form-check-input" name="status" role="switch" {{ $product->status === 1 ? 'checked' : '' }}/>
+                </div>
+                <div class="card-body">
                     <label for="price" class="form-label">Product Image :</label>
                     <img src="{{ asset('productImages/' . $product->image) }}" alt="{{ $product->image }}"  style="width: auto; height: 50px;"/>
                 </div>
