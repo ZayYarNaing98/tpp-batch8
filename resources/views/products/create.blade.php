@@ -41,6 +41,10 @@
                     <input type="text" name="price" placeholder="Enter Product Price" class="form-control mb-2">
                 </div>
                 <div class="card-body">
+                    <label for="" class="form-label me-2">Active or Inactive :</label>
+                    <input type="checkbox" class="form-check-input mb-2"  name="status" role="switch" checked />
+                </div>
+                <div class="card-body">
                     <label for="category" class="form-label">Catgory :</label>
                     <select name="category_id" id="category_id">
                         @foreach ($categories as $category)

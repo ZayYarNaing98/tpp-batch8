@@ -31,6 +31,7 @@ class ProductController extends Controller
             'price' => 'required|integer',
             'category_id' => 'required',
             'image' => 'required',
+            'status' => 'nullable',
         ]);
 
         if($request->hasFile('image'))
@@ -41,6 +42,8 @@ class ProductController extends Controller
 
             $data = array_merge($data, ['image' => $imageName]);
         }
+
+        $data['status'] = $request->has('status') ? true : false;
 
         Product::create($data);
 
@@ -65,6 +68,7 @@ class ProductController extends Controller
             'description' => $request->description,
             'price' => $request->price,
             'category_id' => $request->category_id,
+            'status' => $request->status == 'on' ? 1 : 0,
         ]);
 
         return redirect()->route('products.index');
