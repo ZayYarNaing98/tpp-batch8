@@ -40,6 +40,10 @@
                     <input type="text" name="price" class="form-control" value="{{ $product->price }}" />
                 </div>
                 <div class="card-body">
+                    <label for="price" class="form-label">Product Image :</label>
+                    <img src="{{ asset('productImages/' . $product->image) }}" alt="{{ $product->image }}"  style="width: auto; height: 50px;"/>
+                </div>
+                <div class="card-body">
                     <label for="category" class="form-label">Category :</label>
                     <select name="category_id" id="category_id">
                         @foreach ($categories as $category)

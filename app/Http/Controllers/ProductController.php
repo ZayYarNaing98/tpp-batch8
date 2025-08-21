@@ -13,8 +13,6 @@ class ProductController extends Controller
     {
         $products = Product::with('category')->get();
 
-        // dd($products);
-
         return view('products.index', compact('products'));
     }
 
@@ -32,7 +30,17 @@ class ProductController extends Controller
             'description' => 'required|string',
             'price' => 'required|integer',
             'category_id' => 'required',
+            'image' => 'required',
         ]);
+
+        if($request->hasFile('image'))
+        {
+            $imageName = time() . '.' . $request->image->extension();
+
+            $request->image->move(public_path('productImages'), $imageName);
+
+            $data = array_merge($data, ['image' => $imageName]);
+        }
 
         Product::create($data);
 

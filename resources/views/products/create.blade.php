@@ -48,6 +48,10 @@
                         @endforeach
                     </select>
                 </div>
+                <div class="card-body">
+                    <label for="image" class="form-label">Uploda Your Product Image :</label>
+                    <input type="file" class="form-control"  name="image" />
+                </div>
                 <div class="card-footer">
                     <button type="submit" class="btn btn-primary btn-sm">+Create</button>
                     <a href="{{ route('products.index') }}" class="btn btn-secondary btn-sm">Back</a>
