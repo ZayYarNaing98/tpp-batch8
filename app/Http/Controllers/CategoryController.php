@@ -5,12 +5,20 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Requests\CategoryUpdateRequest;
+use App\Repositories\Category\CategoryRepositoryInterface;
 
 class CategoryController extends Controller
 {
+
+    protected $categoryRepository;
+    public function __construct(CategoryRepositoryInterface $categoryRepository)
+    {
+        $this->categoryRepository = $categoryRepository;
+    }
+
     public function index()
     {
-        $categories = Category::get();
+        $categories  = $this->categoryRepository->index();
 
         return view('categories.index', compact('categories'));
     }
@@ -36,33 +44,30 @@ class CategoryController extends Controller
             $data = array_merge($data, ['image' => $imageName]);
         }
 
-        Category::create($data);
+        $this->categoryRepository->store($data);
 
         return redirect()->route('categories.index');
     }
 
     public function edit($id)
     {
-        $category = Category::find($id);
+        $category = $this->categoryRepository->show($id);
+
         return view('categories.edit', compact('category'));
     }
 
     public function update(CategoryUpdateRequest $request)
     {
-        $category = Category::find($request->id);
+        $validatedData = $request->validated();
 
-        $category->update([
-            'name' => $request->name,
-        ]);
+        $category = $this->categoryRepository->update($request->id, $validatedData);
 
         return redirect()->route('categories.index');
     }
 
     public function delete($id)
     {
-        $category = Category::find($id);
-
-        $category->delete();
+        $category = $this->categoryRepository->destroy($id);
 
         return redirect()->route('categories.index');
     }
