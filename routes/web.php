@@ -33,6 +33,8 @@ Route::get('/products/{id}/edit', [ProductController::class, 'edit'])->name('pro
 Route::post('/products/{id}/update', [ProductController::class, 'update'])->name('products.update');
 
 Route::post('/products/{id}', [ProductController::class, 'delete'])->name('products.delete');
+Route::post('/products/{id}/status', [ProductController::class, 'status'])->name('products.status');
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

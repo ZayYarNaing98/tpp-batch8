@@ -83,4 +83,15 @@ class ProductController extends Controller
 
         return redirect()->route('products.index');
     }
+
+    public function status($id)
+    {
+        $product = Product::find($id);
+
+        $product->status = $product->status == 1 ? 0 : 1;
+
+        $product->save();
+
+        return redirect()->route('products.index');
+    }
 }
