@@ -25,15 +25,11 @@
                         <th>{{ $data['price'] }}</th>
                         <th>{{ $data['category']['name'] }}</th>
                         <th>
-                            {{-- @if ($data->status === 1)
-                                <span class="text-success">Active</span>
-                            @else
-                                <span class="text-danger">Suspend</span>
-                            @endif --}}
                             <form action="{{ route('products.status', ['id' => $data->id]) }}" method="POST">
                                 @csrf
-                                <button type="submit" class="btn btn-sm {{ $data->status === 1 ? "btn-success" : "btn-danger" }}">
-                                    {{ $data->status === 1 ? "Active" : "Suspened"  }}
+                                <button type="submit"
+                                    class="btn btn-sm {{ $data->status === 1 ? 'btn-success' : 'btn-danger' }}">
+                                    {{ $data->status === 1 ? 'ACTIVE' : 'SUSPEND' }}
                                 </button>
                             </form>
                         </th>

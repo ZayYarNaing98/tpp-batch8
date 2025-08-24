@@ -6,19 +6,29 @@ use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Requests\ProductUpdateRequest;
+use App\Repositories\Product\ProductRepositoryInterface;
+use App\Repositories\Category\CategoryRepositoryInterface;
 
 class ProductController extends Controller
 {
+    protected $productRepository;
+    protected $categoryRepository;
+    public function __construct(ProductRepositoryInterface $productRepository, CategoryRepositoryInterface $categoryRepository)
+    {
+        $this->productRepository = $productRepository;
+        $this->categoryRepository = $categoryRepository;
+    }
+
     public function index()
     {
-        $products = Product::with('category')->get();
+        $products = $this->productRepository->index();
 
         return view('products.index', compact('products'));
     }
 
     public function create()
     {
-        $categories = Category::get();
+        $categories = $this->categoryRepository->index();
 
         return view('products.create', compact('categories'));
     }
@@ -45,23 +55,23 @@ class ProductController extends Controller
 
         $data['status'] = $request->has('status') ? true : false;
 
-        Product::create($data);
+        $this->productRepository->store($data);
 
         return redirect()->route('products.index');
     }
 
     public function edit($id)
     {
-        $categories = Category::get();
+        $categories = $this->categoryRepository->index();
 
-        $product = Product::find($id);
+        $product = $this->productRepository->show($id);
 
         return view('products.edit', compact('product', 'categories'));
     }
 
     public function update(ProductUpdateRequest $request)
     {
-        $product = Product::find($request->id);
+        $product = $this->productRepository->show($request->id);
 
         $product->update([
             'name' => $request->name,
@@ -77,7 +87,7 @@ class ProductController extends Controller
 
     public function delete($id)
     {
-        $product = Product::find($id);
+        $product = $this->productRepository->show($id);
 
         $product->delete();
 
@@ -86,7 +96,7 @@ class ProductController extends Controller
 
     public function status($id)
     {
-        $product = Product::find($id);
+        $product = $this->productRepository->show($id);
 
         $product->status = $product->status == 1 ? 0 : 1;
 

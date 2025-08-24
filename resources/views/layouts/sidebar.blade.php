@@ -41,6 +41,12 @@
                 </li>
                 <li class="app-sidebar__heading">UI Components</li>
                 <li>
+                    <a href="{{ route('users.index') }}">
+                        <i class="metismenu-icon pe-7s-users"></i>
+                        User
+                    </a>
+                </li>
+                <li>
                     <a href="{{ route('categories.index') }}">
                         <i class="metismenu-icon pe-7s-diamond"></i>
                         Category

@@ -1,16 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-</head>
-
-<body>
+@extends('layouts.master')
+@section('content')
     <div class="container">
         <div class="mt-4 text-danger">
             @if ($errors->any())
@@ -41,8 +30,8 @@
                     <input type="text" name="price" placeholder="Enter Product Price" class="form-control mb-2">
                 </div>
                 <div class="card-body">
-                    <label for="" class="form-label me-2">Active or Inactive :</label>
-                    <input type="checkbox" class="form-check-input mb-2"  name="status" role="switch" checked />
+                    <label for="" class="form-label me-4">Active or Inactive :</label>
+                    <input type="checkbox" class="form-check-input mb-2" name="status" role="switch" checked />
                 </div>
                 <div class="card-body">
                     <label for="category" class="form-label">Catgory :</label>
@@ -54,19 +43,13 @@
                 </div>
                 <div class="card-body">
                     <label for="image" class="form-label">Uploda Your Product Image :</label>
-                    <input type="file" class="form-control"  name="image" />
+                    <input type="file" class="form-control" name="image" />
                 </div>
                 <div class="card-footer">
-                    <button type="submit" class="btn btn-primary btn-sm">+Create</button>
+                    <button type="submit" class="btn btn-primary btn-sm me-2">+Create</button>
                     <a href="{{ route('products.index') }}" class="btn btn-secondary btn-sm">Back</a>
                 </div>
             </form>
         </div>
     </div>
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
-        integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous">
-    </script>
-</body>
-
-</html>
+@endsection

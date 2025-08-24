@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
@@ -34,6 +35,10 @@ Route::post('/products/{id}/update', [ProductController::class, 'update'])->name
 
 Route::post('/products/{id}', [ProductController::class, 'delete'])->name('products.delete');
 Route::post('/products/{id}/status', [ProductController::class, 'status'])->name('products.status');
+
+Route::resource('/users', UserController::class);
+
+Route::post('/users/{id}/status', [UserController::class, 'status'])->name('users.status');
 
 Auth::routes();
 
