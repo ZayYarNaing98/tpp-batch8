@@ -34,7 +34,7 @@
             <ul class="vertical-nav-menu">
                 <li class="app-sidebar__heading">Dashboards</li>
                 <li>
-                    <a href="index.html" class="mm-active">
+                    <a href="{{route('home')}}" class="mm-active">
                         <i class="metismenu-icon pe-7s-rocket"></i>
                         TPP Dashboard
                     </a>
@@ -47,16 +47,20 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('categories.index') }}">
-                        <i class="metismenu-icon pe-7s-diamond"></i>
-                        Category
-                    </a>
+                    @can('categoryList')
+                        <a href="{{ route('categories.index') }}">
+                            <i class="metismenu-icon pe-7s-diamond"></i>
+                            Category
+                        </a>
+                    @endcan
                 </li>
                 <li>
-                    <a href="{{ route('products.index') }}">
-                        <i class="metismenu-icon pe-7s-diamond"></i>
-                        Product
-                    </a>
+                    @can('productList')
+                        <a href="{{ route('products.index') }}">
+                            <i class="metismenu-icon pe-7s-diamond"></i>
+                            Product
+                        </a>
+                    @endcan
                 </li>
         </div>
     </div>

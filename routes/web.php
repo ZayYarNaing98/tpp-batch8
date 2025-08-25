@@ -40,6 +40,6 @@ Route::resource('/users', UserController::class);
 
 Route::post('/users/{id}/status', [UserController::class, 'status'])->name('users.status');
 
-Auth::routes();
+Auth::routes(['register' => false]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

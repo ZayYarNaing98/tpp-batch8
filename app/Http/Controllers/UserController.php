@@ -23,6 +23,7 @@ class UserController extends Controller
     {
         $this->userRepository = $userRepository;
         $this->userService = $userService;
+        $this->middleware('auth');
     }
 
     public function index()

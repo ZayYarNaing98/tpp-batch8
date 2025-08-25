@@ -2,7 +2,9 @@
 @section('content')
     <div class="container">
         <h1 class="my-4">Product Lists</h1>
-        <a href="{{ route('products.create') }}" class="btn btn-outline-success mb-4 btn-sm">+ Create</a>
+        @can('productCreate')
+            <a href="{{ route('products.create') }}" class="btn btn-outline-success mb-4 btn-sm">+ Create</a>
+        @endcan
         <table class="table table-bordered">
             <thead>
                 <tr>
@@ -38,12 +40,16 @@
                                 style="width: 50px; height: auto;" />
                         </th>
                         <th class="d-flex">
-                            <a href="{{ route('products.edit', ['id' => $data->id]) }}"
-                                class="btn btn-outline-secondary me-2 btn-sm">Edit</a>
-                            <form action="{{ route('products.delete', $data->id) }}" method="POST">
-                                @csrf
-                                <button class="btn btn-outline-danger btn-sm">Delete</button>
-                            </form>
+                            @can('productUpdate')
+                                <a href="{{ route('products.edit', ['id' => $data->id]) }}"
+                                    class="btn btn-outline-secondary me-2 btn-sm">Edit</a>
+                            @endcan
+                            @can('productDelete')
+                                <form action="{{ route('products.delete', $data->id) }}" method="POST">
+                                    @csrf
+                                    <button class="btn btn-outline-danger btn-sm">Delete</button>
+                                </form>
+                            @endcan
                         </th>
                     </tr>
                 @endforeach

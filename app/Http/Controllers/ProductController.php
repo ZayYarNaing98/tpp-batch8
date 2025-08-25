@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
-use App\Models\Category;
 use Illuminate\Http\Request;
+use App\Services\Product\ProductService;
 use App\Http\Requests\ProductUpdateRequest;
 use App\Repositories\Product\ProductRepositoryInterface;
 use App\Repositories\Category\CategoryRepositoryInterface;
@@ -13,10 +13,13 @@ class ProductController extends Controller
 {
     protected $productRepository;
     protected $categoryRepository;
-    public function __construct(ProductRepositoryInterface $productRepository, CategoryRepositoryInterface $categoryRepository)
+    protected $prodcutService;
+    public function __construct(ProductRepositoryInterface $productRepository, CategoryRepositoryInterface $categoryRepository, ProductService $prodcutService)
     {
         $this->productRepository = $productRepository;
         $this->categoryRepository = $categoryRepository;
+        $this->prodcutService = $prodcutService;
+        $this->middleware('auth');
     }
 
     public function index()
@@ -96,11 +99,7 @@ class ProductController extends Controller
 
     public function status($id)
     {
-        $product = $this->productRepository->show($id);
-
-        $product->status = $product->status == 1 ? 0 : 1;
-
-        $product->save();
+        $this->prodcutService->status($id);
 
         return redirect()->route('products.index');
     }
