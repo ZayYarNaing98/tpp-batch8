@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\ProductController;
@@ -37,6 +38,8 @@ Route::post('/products/{id}', [ProductController::class, 'delete'])->name('produ
 Route::post('/products/{id}/status', [ProductController::class, 'status'])->name('products.status');
 
 Route::resource('/users', UserController::class);
+
+Route::resource('/roles', RoleController::class);
 
 Route::post('/users/{id}/status', [UserController::class, 'status'])->name('users.status');
 
