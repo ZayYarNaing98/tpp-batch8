@@ -3,7 +3,9 @@
     <div class="container">
         <div class="card">
             <div class="card-header"></div>
-            <form action="" method="POST">
+            <form action="{{ route('roles.update', $role->id) }}" method="POST">
+                @csrf
+                {{ method_field('PUT') }}
                 <div class="card-body">
                     <label for="name">NAME :</label>
                     <input type="text" name="name" class="form-control" value="{{ $role->name }}" />
@@ -17,6 +19,10 @@
                             </label>
                         </div>
                     @endforeach
+                </div>
+                <div class="card-footer">
+                    <button class="btn btn-primary me-2 btn-sm" type="submit">Update</button>
+                    <a href="{{ route('roles.index') }}" class="btn btn-secondary btn-sm">BACK</a>
                 </div>
             </form>
         </div>

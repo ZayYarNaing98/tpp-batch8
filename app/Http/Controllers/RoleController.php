@@ -69,7 +69,17 @@ class RoleController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        // dd($request->all());
+        $role = Role::find($id);
+        // dd($role);
+
+        $role->update([
+            'name' => $request->name,
+        ]);
+
+        $role->permissions()->sync($request['permissions']);
+
+        return redirect()->route('roles.index');
     }
 
     /**
