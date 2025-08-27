@@ -27,6 +27,8 @@ class RoleAndPermissionSeeder extends Seeder
         $productUpdate = Permission::create(['name' => 'productUpdate']);
         $productDelete = Permission::create(['name' => 'productDelete']);
 
+        $dashboard = Permission::create(['name' => 'dashboard']);
+
         $admin->givePermissionTo([
             $categoryList,
             $categoryCreate,
@@ -37,6 +39,8 @@ class RoleAndPermissionSeeder extends Seeder
             $productCreate,
             $productUpdate,
             $productDelete,
+
+            $dashboard,
         ]);
 
         $student->givePermissionTo([

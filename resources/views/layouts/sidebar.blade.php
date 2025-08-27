@@ -34,10 +34,12 @@
             <ul class="vertical-nav-menu">
                 <li class="app-sidebar__heading">Dashboards</li>
                 <li>
-                    <a href="{{ route('home') }}" class="mm-active">
-                        <i class="metismenu-icon pe-7s-rocket"></i>
-                        TPP Dashboard
-                    </a>
+                    @can('dashboard')
+                        <a href="{{ route('home') }}" class="mm-active">
+                            <i class="metismenu-icon pe-7s-rocket"></i>
+                            TPP Dashboard
+                        </a>
+                    @endcan
                 </li>
                 <li class="app-sidebar__heading">UI Components</li>
                 <li>

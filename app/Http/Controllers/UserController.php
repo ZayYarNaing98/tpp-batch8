@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
 use App\Services\User\UserService;
+use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\UserUpdateRequest;
 use App\Repositories\Role\RoleRepositoryInterface;
@@ -38,7 +39,10 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('users.create');
+        $roles = Role::get();
+        return view('users.create', [
+            'roles' => $roles
+        ]);
     }
 
     /**
@@ -56,6 +60,8 @@ class UserController extends Controller
             'gender' => $validatedData['gender'],
             'address' => $validatedData['address'],
         ]);
+
+        $user->roles()->sync($validatedData['roles']);
 
         return redirect()->route('users.index');
     }

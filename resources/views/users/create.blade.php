@@ -35,6 +35,14 @@
                     <label for="password_confirmation" class="form-label">Confirm Password:</label>
                     <input type="password" name="password_confirmation" placeholder="Enter Your Confirm Password" class="form-control mb-2">
                 </div>
+                <div class="card-body">
+                    <label for="roles">Select Your Roles</label>
+                    <select name="roles[]" id="" class="form-select select">
+                        @foreach ($roles as $role)
+                            <option value="{{ $role->id }}">{{ $role->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
                 <div class="card-footer">
                     <button type="submit" class="btn btn-primary btn-sm me-2">+Create</button>
                     <a href="{{route('users.index')}}" class="btn btn-secondary btn-sm">Back</a>
